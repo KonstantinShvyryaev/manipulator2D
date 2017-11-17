@@ -1,0 +1,71 @@
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+*, #navbar, #content, #footer {
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+}
+.default, .info {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.btn-warning{
+    background-color: rgb(0,113,114);
+    background-image: none;
+    background-repeat: no-repeat;
+}
+.dropCustom {
+    color: #f2e108;
+}
+.dropdown-menu {
+    border-right-width: 0;
+}
+.dropScroll {
+    overflow-x: hidden; /* Deletes scrolling in the adaptive menu */
+    /*margin: 10px;*/
+}
+div .form-group {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.dirProbStart, .invProbStart {
+    margin-top: 10px;
+}
+/*.canvas-wrap { 
+    position: relative;
+}*/
+.canvas {
+    display: block;
+}
+.animeCenter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.animeCenter-2 {
+    position: absolute;
+    /*left: 0;*/
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.animeObject-1 {
+    display: inline-block;
+    background-color: rgb(0,113,114);
+}
+.animeObject-12 {
+    display: inline-block;
+}
+.animeObject-2 {
+    background-color: rgb(0,113,114);
+}

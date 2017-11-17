@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manipulator</title>
+
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <!-- Bootstrap optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" >
+    <!-- My navbar color setting -->
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <!-- My styles -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" 
+                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" 
+                aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand">Manipulator</span>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <!-- Information of How work this application -->         
+                    <li class="info">
+                        <button type="button" class="btn btn-warning navbar-btn" 
+                        data-toggle="modal" data-target=".infoModal">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            Info
+                        </button>
+                    </li><!-- Information of How work this application -->
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Returns everything to the default state -->         
+                    <li class="default">
+                            <button type="button" id="defaultButton" class="btn btn-warning navbar-btn">
+                                <span class="glyphicon glyphicon-cog"></span>
+                                Default
+                            </button>
+                    </li><!-- Returns everything to the default state -->
+
+                    <!-- Settings for the direct problem -->
+                    <li class="dropCustom">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                        role="button" aria-haspopup="true" aria-expanded="false">
+                            Direct problem
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropScroll">
+                            <li class="dropInputFields">
+                                <form class="navbar-form" role="form">
+                                    <div class="form-group">
+                                        <label for="dirLengthA">Length of A</label>
+                                        <input type="number" step="any" value="5"
+                                        class="form-control" id="dirLengthA">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dirLengthB">Length of B</label>
+                                        <input type="number" step="any" value="5"
+                                        class="form-control" id="dirLengthB">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="angleA">Angle of &alpha;</label>
+                                        <input type="number" step="any" value="0"
+                                        class="form-control" id="angleA">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="angleB">Angle of &beta;</label>
+                                        <input type="number" step="any" value="0"
+                                        class="form-control" id="angleB">
+                                    </div>
+                                    <button type="button" id="dirProbButton" 
+                                    class="dirProbStart btn btn-warning center-block">
+                                        <span class="glyphicon glyphicon-ok-sign"></span>
+                                        Start
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li><!-- Settings for the direct problem -->
+
+                    <!-- Settings for the inverse problem -->
+                    <li class="dropCustom">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                        role="button" aria-haspopup="true" aria-expanded="false">
+                            Inverse problem
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropScroll">
+                            <li class="dropInputFields">
+                                <form class="navbar-form" role="input">
+                                    <div class="form-group">
+                                        <label for="invLengthA">Length of A</label>
+                                        <input type="number" step="any" value="5"
+                                        class="form-control" id="invLengthA">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="invLengthB">Length of B</label>
+                                        <input type="number" step="any" value="5"
+                                        class="form-control" id="invLengthB">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="xCoord">Coordinate x</label>
+                                        <input type="number" step="any" value="0"
+                                        class="form-control" id="xCoord">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="yCoord">Coordinate y</label>
+                                        <input type="number" step="any" value="-10"
+                                        class="form-control" id="yCoord">
+                                    </div>
+                                    <button type="button" id="invProbButton" 
+                                    class=" invProbStart btn btn-warning center-block">
+                                        <span class="glyphicon glyphicon-ok-sign"></span>
+                                        Start
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li><!-- Settings for the inverse problem -->
+
+                </ul>
+            </div>
+        </div>
+    </nav><!-- Navbar -->
+
+    <!-- Modal window for button "Info" -->
+    <div class=" infoModal modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" 
+                    data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Information about how to work with this application</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>What is this program for?</h4>
+                    <p>
+                        This program solves the <strong>direct</strong> and 
+                        <strong>inverse</strong> problems of kinematics.
+                    </p>
+                    <hr>
+                    <h4>Direct problem of kinematics</h4>
+                    <p>
+                        You need to choose the <strong>lengths</strong> of your links, 
+                        the <strong>angle</strong> of rotation of the first link and 
+                        the <strong>angle</strong> of rotation of the second link.
+                        Then click on the <strong>button</strong>.
+                    </p>
+                    <hr>
+                    <h4>Inverse problem of kinematics</h4>
+                    <p>
+                        You need to choose the <strong>lengths</strong> of your links, 
+                        to select the <strong>X</strong> and the <strong>Y</strong> coordinates 
+                        where the manipulator will come.
+                        Then click on the <strong>button</strong>.
+                    </p>
+                    <hr>
+                    <h4>Button "Default"</h4>
+                    <p>
+                        When this button is pressed, 
+                        all parameters are moved to the standard position.
+                    </p>
+                    <hr>
+                    <h4>Why the application does not work?</h4>
+                    <p>1. You use the Internet Explorer.</p>
+                    <p>
+                        2. Your version is very outdated and 
+                        does not support some functions
+                        (Please try updating your browser).
+                    </p>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" 
+                    data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- Modal window for button "Info" -->
+
+    <!-- Content -->
+    <div id="content" class="container-fluid">
+        <div class="row">
+            <div class="canvas-wrap col-md-12">
+                <canvas class="canvas"></canvas>
+                <div class="animeCenter">
+                    <div class="animeLoader-1">
+                        <div class="animeObject-1"></div>
+                    </div>
+                </div>
+                <div class="animeCenter">
+                    <div class="animeLoader-1">
+                        <div class="animeObject-12">
+                            <div class="animeCenter-2">
+                                <div class="animeLoader-2">
+                                    <div class="animeObject-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Content -->
+
+    <!-- Footer -->
+    <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container-fluid">
+                    <span class="navbar-text pull-right">
+                        Developed by Konstantin Shvyryaev
+                        &copy; 2017
+                    </span>
+            </div>
+    </nav><!-- Footer -->
+
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Anime.js -->
+    <script src="js/anime.min.js"></script>
+    <!-- My scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>
