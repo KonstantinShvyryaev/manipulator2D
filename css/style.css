@@ -41,6 +41,11 @@ div .form-group {
 .dirProbStart, .invProbStart {
     margin-top: 10px;
 }
+.infoModal {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+.infoModal::-webkit-scrollbar { width: 0; }
 /*.canvas-wrap { 
     position: relative;
 }*/
