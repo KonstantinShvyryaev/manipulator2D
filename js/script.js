@@ -127,6 +127,9 @@ function drawCanvas(canvasParams) {
 
 /* Processing of fields */
 function fieldsHandler(radius, beamWidth) {
+    // Last positions of coordinates
+    var xCoordLast = Number($("#xCoord").val());
+    var yCoordLast = Number($("#yCoord").val());
     // Processing of field dirLengthA
     $("#dirLengthA").on("input keyup", function (event) {
         var dirLengthA = Number($("#dirLengthA").val());
@@ -139,7 +142,10 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, dirLengthA, dirLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength();
+        afterChangingLength(yCoordLast);
+        // Updating last coords
+        xCoordLast = Number($("#xCoord").val());
+        yCoordLast = Number($("#yCoord").val());
     });
     // Processing of field invLengthA
     $("#invLengthA").on("input keyup", function (event) {
@@ -153,7 +159,10 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, invLengthA, invLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength();
+        afterChangingLength(yCoordLast);
+        // Updating last coords
+        xCoordLast = Number($("#xCoord").val());
+        yCoordLast = Number($("#yCoord").val());
     });
     // Processing of field dirLengthB
     $("#dirLengthB").on("input keyup", function (event) {
@@ -167,7 +176,10 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, dirLengthA, dirLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength();
+        afterChangingLength(yCoordLast);
+        // Updating last coords
+        xCoordLast = Number($("#xCoord").val());
+        yCoordLast = Number($("#yCoord").val());
     });
     // Processing of field invLengthB
     $("#invLengthB").on("input keyup", function (event) {
@@ -181,7 +193,10 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, invLengthA, invLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength();
+        afterChangingLength(yCoordLast);
+        // Updating last coords
+        xCoordLast = Number($("#xCoord").val());
+        yCoordLast = Number($("#yCoord").val());
     });
     // Processing of field angleA
     $("#angleA").on("input keyup", function (event) {
@@ -209,6 +224,7 @@ function fieldsHandler(radius, beamWidth) {
         var yCoord = Number($("#yCoord").val());
         var min = -(lengthA + lengthB);
         var max = lengthA + lengthB;
+        var centerLimit = Math.abs(lengthA - lengthB);
         var radiusInScale = lengthA + lengthB;
 
         // If the xCoord does not fall into the region
@@ -223,10 +239,23 @@ function fieldsHandler(radius, beamWidth) {
         var xCoordSquare = Math.pow(xCoord, 2);
         var ySquareSquare = Math.pow(yCoord, 2);
         var radiusInScaleSquare = Math.pow(radiusInScale, 2);
+        var centerLimitSquare = Math.pow(centerLimit, 2);
         if (xCoordSquare + ySquareSquare > radiusInScaleSquare) {
-            var new_yCoord = Math.sqrt(radiusInScaleSquare - xCoordSquare);
+            var new_yCoord = roundingOff(Math.sqrt(radiusInScaleSquare - xCoordSquare) - 0.004);
+            if (yCoordLast < 0) {
+                new_yCoord *= -1;
+            }
+            $("#yCoord").val(new_yCoord);
+        } else if (xCoordSquare + ySquareSquare <= centerLimitSquare) {
+            var new_yCoord = roundingOff(Math.sqrt(centerLimitSquare - xCoordSquare) + 0.004);
+            if (yCoordLast < 0) {
+                new_yCoord *= -1;
+            }
             $("#yCoord").val(new_yCoord);
         }
+        // Updating last coords
+        xCoordLast = Number($("#xCoord").val());
+        yCoordLast = Number($("#yCoord").val());
     });
     // Processing of field yCoord
     $("#yCoord").on("input keyup", function (event) {
@@ -236,6 +265,7 @@ function fieldsHandler(radius, beamWidth) {
         var yCoord = Number($("#yCoord").val());
         var min = -(lengthA + lengthB);
         var max = lengthA + lengthB;
+        var centerLimit = Math.abs(lengthA - lengthB);
         var radiusInScale = lengthA + lengthB;
 
         // If the yCoord does not fall into the region
@@ -250,10 +280,23 @@ function fieldsHandler(radius, beamWidth) {
         var xCoordSquare = Math.pow(xCoord, 2);
         var ySquareSquare = Math.pow(yCoord, 2);
         var radiusInScaleSquare = Math.pow(radiusInScale, 2);
+        var centerLimitSquare = Math.pow(centerLimit, 2);
         if (xCoordSquare + ySquareSquare > radiusInScaleSquare) {
-            var new_xCoord = Math.sqrt(radiusInScaleSquare - ySquareSquare);
+            var new_xCoord = roundingOff(Math.sqrt(radiusInScaleSquare - ySquareSquare) - 0.004);
+            if (xCoordLast < 0) {
+                new_xCoord *= -1;
+            }
+            $("#xCoord").val(new_xCoord);
+        } else if (xCoordSquare + ySquareSquare <= centerLimitSquare) {
+            var new_xCoord = roundingOff(Math.sqrt(centerLimitSquare - ySquareSquare) + 0.004);
+            if (xCoordLast < 0) {
+                new_xCoord *= -1;
+            }
             $("#xCoord").val(new_xCoord);
         }
+        // Updating last coords
+        xCoordLast = Number($("#xCoord").val());
+        yCoordLast = Number($("#yCoord").val());
     });
 }
 
@@ -301,13 +344,14 @@ function beamsSettingCSS(radius, beamWidth, lengthA, lengthB) {
 }
 
 /* Function of recalculate values of x and y coords */
-function afterChangingLength() {
+function afterChangingLength(yCoordLast) {
     var lengthA = Number($("#invLengthA").val());
     var lengthB = Number($("#invLengthB").val());
     var xCoord = Number($("#xCoord").val());
     var yCoord = Number($("#yCoord").val());
     var min = -(lengthA + lengthB);
     var max = lengthA + lengthB;
+    var centerLimit = Math.abs(lengthA - lengthB);
     var radiusInScale = lengthA + lengthB;
 
     // If the xCoord does not fall into the region
@@ -322,8 +366,18 @@ function afterChangingLength() {
     var xCoordSquare = Math.pow(xCoord, 2);
     var ySquareSquare = Math.pow(yCoord, 2);
     var radiusInScaleSquare = Math.pow(radiusInScale, 2);
+    var centerLimitSquare = Math.pow(centerLimit, 2);
     if (xCoordSquare + ySquareSquare > radiusInScaleSquare) {
-        var new_yCoord = Math.sqrt(radiusInScaleSquare - xCoordSquare);
+        var new_yCoord = roundingOff(Math.sqrt(radiusInScaleSquare - xCoordSquare) - 0.004);
+        if (yCoordLast < 0) {
+            new_yCoord *= -1;
+        }
+        $("#yCoord").val(new_yCoord);
+    } else if (xCoordSquare + ySquareSquare <= centerLimitSquare) {
+        var new_yCoord = roundingOff(Math.sqrt(centerLimitSquare - xCoordSquare) + 0.004);
+        if (yCoordLast < 0) {
+            new_yCoord *= -1;
+        }
         $("#yCoord").val(new_yCoord);
     }
 }
@@ -862,12 +916,12 @@ function textPosCoords(angles, coords, centerOfWidth, centerOfHeight, indent, ra
 /* Function for finding indent for degree */
 function indentForDegree(angles) {
     if ((angles[0] % 1) != 0) {
-        var degreeAIndent = 3;
+        var degreeAIndent = 3.2;
     }   else {
         var degreeAIndent = 1.5;
     }
     if ((angles[1] % 1) != 0) {
-        var degreeBIndent = 3;
+        var degreeBIndent = 3.2;
     }   else {
         var degreeBIndent = 1.5;
     }
