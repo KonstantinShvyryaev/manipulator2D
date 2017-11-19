@@ -410,6 +410,12 @@ function buttonsHandler(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams)
         $("#xCoord").val(0);
         $("#yCoord").val(-10);
 
+        // Load standard size of beams
+        var radius = canvasParams[5];
+        var beamWidth = 10;
+        beamsSettingCSS(radius, beamWidth, Number($("#dirLengthA").val()),
+        Number($("#dirLengthB").val()));
+
         // [angleA, angleB]
         var angles = [Number($("#angleA").val()), Number($("#angleB").val())];
         // [xCoord, yCoord]
@@ -774,9 +780,6 @@ function textPosAngleB(angles, centerOfWidth, centerOfHeight, indent, radius) {
 
 /* Calculating coords of coords text */
 function textPosCoords(angles, coords, centerOfWidth, centerOfHeight, indent, radius) {
-    /*xPosCoords -= 1.5 * indent;
-    yPosCoords -= indent;*/
-
     if (angles[0] >= 0 && angles[0] < 45) {
         if (angles[1] >= 0 && angles[1] < 90) {
             var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
