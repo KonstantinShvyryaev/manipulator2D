@@ -50,7 +50,7 @@ function anyActions(canvas, context, rotationOfFirstBeam, rotationOfSecondBeam) 
     rotatingBeams(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams, 
         angles, coords, 0);
     /* Processing of fields */
-    fieldsHandler(radius, beamWidth);
+    fieldsHandler(radius, beamWidth, canvasParams);
     /* Processing of buttons */
     buttonsHandler(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams);
 }
@@ -126,7 +126,7 @@ function drawCanvas(canvasParams) {
 }
 
 /* Processing of fields */
-function fieldsHandler(radius, beamWidth) {
+function fieldsHandler(radius, beamWidth, canvasParams) {
     // Last positions of coordinates
     var xCoordLast = Number($("#xCoord").val());
     var yCoordLast = Number($("#yCoord").val());
@@ -142,10 +142,13 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, dirLengthA, dirLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength(yCoordLast);
+        changingCoords(yCoordLast);
         // Updating last coords
         xCoordLast = Number($("#xCoord").val());
         yCoordLast = Number($("#yCoord").val());
+
+        // Updating positions of canvas
+        drawCanvas(canvasParams);
     });
     // Processing of field invLengthA
     $("#invLengthA").on("input keyup", function (event) {
@@ -159,10 +162,13 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, invLengthA, invLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength(yCoordLast);
+        changingCoords(yCoordLast);
         // Updating last coords
         xCoordLast = Number($("#xCoord").val());
         yCoordLast = Number($("#yCoord").val());
+        
+        // Updating positions of canvas
+        drawCanvas(canvasParams);
     });
     // Processing of field dirLengthB
     $("#dirLengthB").on("input keyup", function (event) {
@@ -176,10 +182,13 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, dirLengthA, dirLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength(yCoordLast);
+        changingCoords(yCoordLast);
         // Updating last coords
         xCoordLast = Number($("#xCoord").val());
         yCoordLast = Number($("#yCoord").val());
+
+        // Updating positions of canvas
+        drawCanvas(canvasParams);
     });
     // Processing of field invLengthB
     $("#invLengthB").on("input keyup", function (event) {
@@ -193,10 +202,13 @@ function fieldsHandler(radius, beamWidth) {
         // Setting of CSS of beams 
         beamsSettingCSS(radius, beamWidth, invLengthA, invLengthB);
         // Recalculate values of x and y coords
-        afterChangingLength(yCoordLast);
+        changingCoords(yCoordLast);
         // Updating last coords
         xCoordLast = Number($("#xCoord").val());
         yCoordLast = Number($("#yCoord").val());
+
+        // Updating positions of canvas
+        drawCanvas(canvasParams);
     });
     // Processing of field angleA
     $("#angleA").on("input keyup", function (event) {
@@ -344,7 +356,7 @@ function beamsSettingCSS(radius, beamWidth, lengthA, lengthB) {
 }
 
 /* Function of recalculate values of x and y coords */
-function afterChangingLength(yCoordLast) {
+function changingCoords(yCoordLast) {
     var lengthA = Number($("#invLengthA").val());
     var lengthB = Number($("#invLengthB").val());
     var xCoord = Number($("#xCoord").val());
@@ -803,7 +815,7 @@ function textPosCoords(angles, coords, centerOfWidth, centerOfHeight, indent, ra
     }
     else if (angles[0] >= 90 && angles[0] < 135) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
             var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
