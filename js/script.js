@@ -411,10 +411,15 @@ function buttonsHandler(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams)
         $("#yCoord").val(-10);
 
         // Load standard size of beams
+        var lastCanvasWidth = canvasParams[7];
+        var lastCanvasHeight = canvasParams[8];
         var radius = canvasParams[5];
         var beamWidth = 10;
-        beamsSettingCSS(radius, beamWidth, Number($("#dirLengthA").val()),
-        Number($("#dirLengthB").val()));
+        if (lastCanvasWidth == canvasParams[0].width || 
+            lastCanvasHeight == canvasParams[0].height) {
+                beamsSettingCSS(radius, beamWidth, Number($("#dirLengthA").val()),
+                Number($("#dirLengthB").val()));
+        }
 
         // [angleA, angleB]
         var angles = [Number($("#angleA").val()), Number($("#angleB").val())];
@@ -427,6 +432,13 @@ function buttonsHandler(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams)
 
         // Setting new positions of angles
         lastPositionsOfAngles = [0, 0];
+
+        // Pressing to the toggle button
+        /*var dataToggle = $("#toggleButton").attr("data-toggle");
+        if (dataToggle) {
+            $('#toggleButton').click();
+        }
+        $("#toggleButton").attr("data-toggle", false);*/
     });
     // Processing of button of form dirProb
     $("#dirProbButton").click(function () {
@@ -794,7 +806,7 @@ function textPosCoords(angles, coords, centerOfWidth, centerOfHeight, indent, ra
             var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2 * indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
             var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
         }
     }
