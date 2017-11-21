@@ -433,12 +433,8 @@ function buttonsHandler(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams)
         // Setting new positions of angles
         lastPositionsOfAngles = [0, 0];
 
-        // Pressing to the toggle button
-        /*var dataToggle = $("#toggleButton").attr("data-toggle");
-        if (dataToggle) {
-            $('#toggleButton').click();
-        }
-        $("#toggleButton").attr("data-toggle", false);*/
+        // Close dropScroll
+        $(".dropScroll").attr("class", "dropScroll navbar-collapse collapse");
     });
     // Processing of button of form dirProb
     $("#dirProbButton").click(function () {
@@ -462,6 +458,9 @@ function buttonsHandler(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams)
 
         // Setting new positions of angles
         lastPositionsOfAngles = angles;
+
+        // Close dropScroll
+        $(".dropScroll").attr("class", "dropScroll navbar-collapse collapse");
     });
     // Processing of button of form invProb
     $("#invProbButton").click(function () {
@@ -490,6 +489,9 @@ function buttonsHandler(rotationOfFirstBeam, rotationOfSecondBeam, canvasParams)
 
         // Setting new positions of angles
         lastPositionsOfAngles = angles;
+
+        // Close dropScroll
+        $(".dropScroll").attr("class", "dropScroll navbar-collapse collapse");
     });
     // Processing of dropdown menu
     $(".dropdown-toggle").click(function () {
