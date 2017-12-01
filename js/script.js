@@ -794,148 +794,152 @@ function textPosAngleB(angles, centerOfWidth, centerOfHeight, indent, radius) {
 
 /* Calculating coords of coords text */
 function textPosCoords(angles, coords, centerOfWidth, centerOfHeight, indent, radius) {
+    // [lengthA, lengthB ]
+    var lengths = [Number($("#dirLengthA").val()), Number($("#dirLengthB").val())];
+    var outerRadius = lengths[0] + lengths[1];
+
     if (angles[0] >= 0 && angles[0] < 45) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 2.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
     }
     else if (angles[0] >= 45 && angles[0] < 90) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
     }
     else if (angles[0] >= 90 && angles[0] < 135) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
     }
     else if (angles[0] >= 135 && angles[0] < 180) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 2.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
     }
     else if (angles[0] >= 180 && angles[0] < 225) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
     }
     else if (angles[0] >= 225 && angles[0] < 270) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
     }
     else if (angles[0] >= 270 && angles[0] < 315) {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
     }
     else {
         if (angles[1] >= 0 && angles[1] < 90) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 2.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - 0.5 * indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 2.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - 0.5 * indent;
         }
         else if (angles[1] >= 90 && angles[1] < 180) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 + 1.5 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 + indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius + 1.5 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius + indent;
         }
         else if (angles[1] >= 180 && angles[1] < 270) {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
         else {
-            var xPosCoords = centerOfWidth + radius * coords[0] / 10 - 2 * indent;
-            var yPosCoords = centerOfHeight - radius * coords[1] / 10 - indent;
+            var xPosCoords = centerOfWidth + radius * coords[0] / outerRadius - 2 * indent;
+            var yPosCoords = centerOfHeight - radius * coords[1] / outerRadius - indent;
         }
     }
 
